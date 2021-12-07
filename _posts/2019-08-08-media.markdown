@@ -1,0 +1,212 @@
+---
+layout: post
+title:  "Más allá de la media aritmética"
+date:   2019-08-08 10:33:39 +0200
+categories: jekyll update
+---
+## Más allá de la media aritmética
+
+La media aritmética es una herramienta fundamental, básica en la estadística y
+por extensión, en la vida diaria. Tanto es así que hasta la gente más profana en
+la materia, la conoce y la utiliza llamándola por abuso del lenguaje,
+simplemente media. Este conocimiento tan generalizado, si bien permite conocer y
+aplicar la herramienta, acaba sepultando la existencia de otras medias que en
+muchos casos, son más adecuadas. De esta forma, a mucha gente le resulta
+sorprendente oír algo como "media armónica" e inmediatamente piensa en
+rebuscados cálculos esotéricos. A continuación veremos que hay vida más allá de
+la media aritmética y que no resulta nada complicado. Recordamos que la media
+aritmética $$\bar{x}$$ se puede definir como la suma de todos los valores de
+una
+variable divido por la cantidad de valores, esto es:
+
+$$
+\begin{equation}
+\displaystyle {\bar{x}}={\frac{1}{n}}\sum_{i=1}^{n}x_{i}={\frac
+{x_{1}+x_{2}+\cdots+x_{n}}{n}}
+\end{equation}
+$$
+
+La media armónica $$H$$ se expresa de este modo:
+
+
+$$
+{% raw %}
+\begin{equation}
+H={\frac{n}{\displaystyle \sum_{i=1}^{n}{\cfrac{1}{x_{i}}}}}={\frac
+{n}{{\cfrac{1}{x_{1}}}+\cdots +{\cfrac{1}{x_{n}}}}}
+\end{equation}
+{% endraw %}
+$$
+
+
+Este cambio genera el problema de ser muy sensible a anomalías cuando los datos
+son muy pequeños o cercanos a 0. Esto es lógico pues cada valor va a representar
+el denominador de un cociente. En una división $$\frac{a}{b}$$, podemos ver
+intuitivamente que cuanto menor sea el valor de 'b' respecto a 'a' mayor será el
+resultado y viceversa. Así, $$\displaystyle\sum_{i=1}^{n}{\cfrac {1}{x_{i}}}$$
+puede tomar grandes valores que desvirtúan el resultado si $$x_i$$ es un valor
+muy pequeño. También existe la media geométrica $$G$$:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\
+{G}}={\sqrt[{n}]{\prod_{i=1}^{n}{x_{i}}}}={\sqrt[{n}]{x_{1}\cdot x_{2}\cdots
+x_{n}}}
+\end{equation}
+{% endraw %}
+$$
+
+Si bien esta nueva formulación mitiga en parte uno de los mayores problemas de
+la media aritmética como es su sensibilidad a valores extremos -razón por la
+cual es inapropiada para, por ejemplo, calcular sueldos- tiene dos problemas
+básicos. En primer lugar es un cálculo bastante más complejo -puede resultar
+tremendamente complejo hacer a mano o mentalmente- y presenta un inconveniente
+importante. En el caso de que uno sólo de los valores tome el valor 0, el
+cálculo se anula pues cualquier número multiplicado por ese valor sería 0. Por
+último vemos la fórmula de la media cuadrática $\ {C}$:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\ {C} }={\sqrt {\frac{1}{n}\sum _{i=1}^{n}x_{i}^{2}}}=\sqrt
+{\frac {x_{1}^{2}+x_{2}^{2}+\cdots +x_{n}^{2}} {n}}
+\end{equation}
+{% endraw %}
+$$
+
+Resulta la más similar a la media aritmética. Haciendo honor a su nombre se
+eleva cada valor al cuadrado y aplica después una raíz cuadrada al total de su
+sumatoria dividida por n. Con ello se consigue que al agrupar valores de signo
+contrario no se contrarrestren, pues cualquier número elevado al cuadrado, ya
+sea positivo o negativo, resulta positivo. Así, la media cuadrática resulta muy
+útil en cálculos donde lo que nos interesa es el valor absoluto como por
+ejemplo, errores de medida.
+
+Hechas las presentaciones, la pregunta que surge resulta evidente, ¿Para qué se
+usan? veámoslo con unos ejemplos.
+
+Un avión recorre 6000 km. Los primeros 1000 km los recorre a una velocidad de
+800 km/h, 2000 km a 1100 km/h, y los 3000 km restantes baja a una velocidad de
+900 km/h. Usando la media aritmética, la velocidad media sería:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\bar {x}}={\frac {800+2 \cdot 1100+3 \cdot 900} {6} = \ 950
+km/h}
+\end{equation}
+{% endraw %}
+$$
+
+Sin embargo, de hacerlo con la media armónica obtenemos la velocidad media real:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {H}={\frac {6}{{\cfrac{1}{800}}+{\cfrac{3}{900}}+{\cfrac
+{2}{1100}}}}=937,27 \ km/h
+\end{equation}
+{% endraw %}
+$$
+
+La media aritmética supone el cálculo de la velocidad media en igualdad de
+tiempos, mientras que la media armónica supone la velocidad media en igualdad de
+espacios. Si recordamos que espacio = velocidad x tiempo, sabemos que cuando
+aumenta la velocidad, es necesario menos tiempo para recorrer la misma distancia
+porque velocidad y tiempo son magnitudes inversamente proporcionales.
+
+Una población de 5000 bacterias crecen en una placa de Petri un 5% el primer
+día, un 15% el segundo día, un 50% en el tercero, y un 75% de crecimiento en
+el cuarto día. ¿Cúal sería la tasa promedio en estos cuatro días?. Desarrollemos
+primero los datos
+
+| Día | Población inicial | Tasa de crecimiento | Factor | Población a final de año |
+|:---:|:-----------------:|:-------------------:|:------:|:------------------------:|
+|  1  |       50.000      |        0.3625       | 1.3625 |          68.125          |
+|  2  |       68.125      |        0.3625       | 1.3625 |          92.821          |
+|  3  |       92.821      |        0.3625       | 1.3625 |          126.469         |
+|  4  |       126.469     |        0.3625       | 1.3625 |          172.314         |
+
+Es decir, la población final sería de 158.484 bacterias -usando siempre el
+lógico redondeo a un valor entero- Si usásemos la media aritmética como el
+factor de la tasa media de crecimiento, la tabla sería ésta:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\bar {x}}={\frac {1.05 + 1.15 + 1.5 + 1.75} {4} = \ 1.3625}
+\end{equation}
+{% endraw %}
+$$
+
+| Día | Población inicial | Tasa de crecimiento | Factor | Población a final de año |
+|:---:|:-----------------:|:-------------------:|:------:|:------------------------:|
+|  1  |       50.000      |         0.3343      | 1.3343 |          66.715          |
+|  2  |       66.715      |         0.3343      | 1.3343 |          89.018          |
+|  3  |       89.018      |         0.3343      | 1.3343 |          118.777         |
+|  4  |       118.777     |         0.3343      | 1.3343 |          158.484         |
+
+Vemos que el valor final tiene un error importante, pues da una población final
+superior a la real. Veamos qué ocurre si usamos la media geométrica
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\ {G}}={\sqrt[{4}]{1,05\cdot 1,15\cdot 1,5 \cdot 1,75}}=1.3343
+\end{equation}
+{% endraw %}
+$$
+
+| Día | Población inicial | Tasa de crecimiento | Factor | Población a final de año |
+|:---:|:-----------------:|:-------------------:|:------:|:------------------------:|
+|  1  |       50.000      |         0.3343      | 1.3343 |          66.715          |
+|  2  |       66.715      |         0.3343      | 1.3343 |          89.018          |
+|  3  |       89.018      |         0.3343      | 1.3343 |          118.777         |
+|  4  |       118.777     |         0.3343      | 1.3343 |          158.484         |
+
+Comprobamos que efectivamente el factor de la media geométrica es el valor
+correcto.\\
+\\
+Supongamos que siete ingenieros desarrollan un método para construir pequeñas
+bolas metálicas para rodamientos que deben medir exactamente 5 milímetros. No
+nos preocupa que el error sea por exceso o por defecto, pues tanto si demasiado
+pequeña o demasiado grande, no nos servirá. Construyamos la tabla de resultados:
+
+| Ingeniero | Tamaño obtenido en mm | Margen de error |
+|:---:|:---:|:---:|
+| 1 | 5.4099 | +0.4099 |
+| 2 | 3.1010 | -1.8990 |
+| 3 | 6.0430 | +1.0430 |
+| 4 | 4.5744 | -0.4256 |
+| 5 | 3.9297 | -1.0703 |
+| 6 | 4.9804 | -0.0196 |
+| 7 | 5.6734 | +0.6734 |
+
+Usando la media aritmética el resultado sería:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\bar {x}}={\frac
+{0.4099-1.8990+1.0430-0.4256-1.0703-0.0196+0.6734} {7} = \ -0.1840286}
+\end{equation}
+{% endraw %}
+$$
+
+Y con la media cuadrática:
+
+$$
+{% raw %}
+\begin{equation}
+\displaystyle {\ {C} }={\sqrt {\frac{1}{7}\sum _{i=1}^{n}x_{i}^{2}}}=\sqrt
+{\frac {(0.4099)^2+(-1.8990)^2+\dots+(-0.0196)^2+(0.6734)^2} {7}}=0.9741368
+\end{equation}
+{% endraw %}
+$$
+
+Es fácil comprobar cómo la media aritmética da un resultado muy inferior al que
+intuitivamente esperamos, pues valores positivos y negativos se contrarestan. La
+media cuadrática soluciona el problema mostrando el error medio real de los
+siete ingenieros.
+
