@@ -4,20 +4,20 @@ title:  "Más allá de la media aritmética"
 date:   2019-08-08 10:33:39 +0200
 categories: jekyll update
 ---
+
 ## Más allá de la media aritmética
 
 La media aritmética es una herramienta fundamental, básica en la estadística y
-por extensión, en la vida diaria. Tanto es así que hasta la gente más profana en
-la materia, la conoce y la utiliza llamándola por abuso del lenguaje,
-simplemente media. Este conocimiento tan generalizado, si bien permite conocer y
-aplicar la herramienta, acaba sepultando la existencia de otras medias que en
+por extensión, en la vida diaria. Tanto es así que hasta la gente más profana
+en la materia, la conoce y la utiliza llamándola por abuso del lenguaje,
+simplemente media. Este conocimiento tan generalizado, si bien permite conocer
+y aplicar la herramienta, acaba sepultando la existencia de otras medias que en
 muchos casos, son más adecuadas. De esta forma, a mucha gente le resulta
 sorprendente oír algo como "media armónica" e inmediatamente piensa en
 rebuscados cálculos esotéricos. A continuación veremos que hay vida más allá de
 la media aritmética y que no resulta nada complicado. Recordamos que la media
 aritmética $$\bar{x}$$ se puede definir como la suma de todos los valores de
-una
-variable divido por la cantidad de valores, esto es:
+una variable divido por la cantidad de valores, esto es:
 
 $$
 \begin{equation}
@@ -40,12 +40,12 @@ $$
 
 
 Este cambio genera el problema de ser muy sensible a anomalías cuando los datos
-son muy pequeños o cercanos a 0. Esto es lógico pues cada valor va a representar
-el denominador de un cociente. En una división $$\frac{a}{b}$$, podemos ver
-intuitivamente que cuanto menor sea el valor de 'b' respecto a 'a' mayor será el
-resultado y viceversa. Así, $$\displaystyle\sum_{i=1}^{n}{\cfrac {1}{x_{i}}}$$
-puede tomar grandes valores que desvirtúan el resultado si $$x_i$$ es un valor
-muy pequeño. También existe la media geométrica $$G$$:
+son muy pequeños o cercanos a 0. Esto es lógico pues cada valor va a
+representar el denominador de un cociente. En una división $$\frac{a}{b}$$,
+podemos ver intuitivamente que cuanto menor sea el valor de 'b' respecto a 'a'
+mayor será el resultado y viceversa. Así, $$\displaystyle\sum_{i=1}^{n}{\cfrac
+{1}{x_{i}}}$$ puede tomar grandes valores que desvirtúan el resultado si
+$$x_i$$ es un valor muy pequeño. También existe la media geométrica $$G$$:
 
 $$
 {% raw %}
@@ -111,14 +111,14 @@ $$
 $$
 
 La media aritmética supone el cálculo de la velocidad media en igualdad de
-tiempos, mientras que la media armónica supone la velocidad media en igualdad de
-espacios. Si recordamos que espacio = velocidad x tiempo, sabemos que cuando
-aumenta la velocidad, es necesario menos tiempo para recorrer la misma distancia
-porque velocidad y tiempo son magnitudes inversamente proporcionales.
+tiempos, mientras que la media armónica supone la velocidad media en igualdad
+de espacios. Si recordamos que espacio = velocidad x tiempo, sabemos que cuando
+aumenta la velocidad, es necesario menos tiempo para recorrer la misma
+distancia porque velocidad y tiempo son magnitudes inversamente proporcionales.
 
 Una población de 5000 bacterias crecen en una placa de Petri un 5% el primer
-día, un 15% el segundo día, un 50% en el tercero, y un 75% de crecimiento en
-el cuarto día. ¿Cúal sería la tasa promedio en estos cuatro días?. Desarrollemos
+día, un 15% el segundo día, un 50% en el tercero, y un 75% de crecimiento en el
+cuarto día. ¿Cúal sería la tasa promedio en estos cuatro días?. Desarrollemos
 primero los datos
 
 | Día | Población inicial | Tasa de crecimiento | Factor | Población a final de año |
@@ -206,7 +206,6 @@ $$
 $$
 
 Es fácil comprobar cómo la media aritmética da un resultado muy inferior al que
-intuitivamente esperamos, pues valores positivos y negativos se contrarestan. La
-media cuadrática soluciona el problema mostrando el error medio real de los
+intuitivamente esperamos, pues valores positivos y negativos se contrarestan.
+La media cuadrática soluciona el problema mostrando el error medio real de los
 siete ingenieros.
-

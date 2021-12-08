@@ -1,0 +1,179 @@
+---
+layout: post
+title:  "La importancia de un código claro"
+date:   2019-09-08 10:33:39 +0200
+categories: jekyll update
+---
+
+## La importancia de un código claro
+
+Pese a que ésta es una cuestión que atañe no sólo a los estadísticos sino a
+informáticos y prácticamente cualquier rama tecnológica que implique la
+programación pura y dura, la claridad y la sencillez en el código nos ayudará
+enormemente cuando aprendamos R, el lenguaje estadístico por excelencia -con
+permiso de Python-.
+
+Un código claro no sólo nos permite crearlo con garantías, sino también ser
+capaz de mantenerlo y que otras personas puedan fácilmente entender el sentido
+de él. Cuantísimas veces al releer un código antiguo escrito por nosotros
+mismos hemos tardado un tiempo precioso simplemente en entender qué hacía y por
+qué. Veámoslo con un sencillo ejemplo práctico.
+
+Imaginemos que queremos desarrollar una función que genere una progresión de n
+elementos, dados los dos primeros. Los siguientes se generarán o bien mediante
+la suma de los elementos precedentes con una probabilidad del 75%, o bien
+multiplicando por dos esa suma con una probabilidad del 25%. La función debe
+devolver tres resultados: el valor que tiene el elemento n-ésimo, así como la
+media y la varianza de la progresión. Por ejemplo, si designamos que los dos
+primeros número sean 2 y 3, con una probabilidad del 75% el siguiente valor
+será 5 (2+3) o bien 10 (2x(2+3)) con probabilidad del 25%. Un código funcional
+podría ser éste:
+
+```{r}
+funcion1=function(a1,a2,n){
+  x=1:n
+  x[1]=a1
+  if(n==1){
+    return(list(xn=x[n],media=mean(x),varianza=0))
+  }
+  x[2]=a2
+  if(n==2){
+    return(list(xn=x[n],media=mean(x),varianza=var(x)))
+  }
+  a=sample(100,n,T)
+  for(i in 3:n){
+    if(a[i]<=25){
+      x[i]=2*(x[i-1]+x[i-2])
+    }
+    else{
+      x[i]=x[i-1]+x[i-2]
+    }
+  }
+  return(list(xn=x[n],media=mean(x),varianza=var(x)))
+}
+```
+
+Como ya veremos, es un código que funciona, pero que resulta tosco. analicemos
+línea a línea qué hace. La línea 1 crea una variable de tipo int de n
+elementos, al hacerlo así, creamos una secuencia ordenada de 1 a n
+(1,2,3,...,n). La línea 2 asigna al primer elemento el valor de a1 para
+posteriormente mediante una sentencia condicional, darles su valor como media y
+una varianza cero de ser éste el único elemento de la progresión (n=1). La
+línea 7 hace lo propio con el elemento a2, asignándolo al segundo elemento y
+estableciendo la condición de n=2. La línea 11 llama a la función sample para
+crear una nueva variable llamada "a" formada por una muestra al azar de n
+elementos de una población de tamaño 100 con posibilidad de repetirse, de ahí
+la T (replace = TRUE). Si el valor del i-ésimo elemento es menor de 25, se suma
+la pareja precedente, si no, se multiplican. Al final la función devuelve como
+valores los datos pedidos en el enunciado.
+
+Como ya se indicaba, el código funciona, pero es farragoso, ineficiente, ya sea
+por sentencias condicionales innecesarias como por la creación una segunda
+progresión que números aleatorios que ni siquiera se utiliza totalmente. Al ser
+un ejemplo muy básico no hay excesivos problemas pero se trata de un estilo que
+complicaría enormemente la lectura del código de ser más largo y complejo.
+Veamos una versión alternativa:
+
+```{r}
+funcion2 = function(a1,a2,n){
+  progresion <- c(a1,a2)
+  n=n-2
+  for (i in 1:n){
+    probabilidadSuma <- sample(c(TRUE, FALSE),size = 1, prob=c(0.75, 0.25))
+    if (probabilidadSuma == TRUE){
+      progresion <- append(progresion, c(progresion[i]+progresion[i+1]))
+    } else {
+      progresion <- append(progresion, c(2*(progresion[i]+progresion[i+1])))
+    }
+  }
+  mediaProgresion <- mean(progresion)
+  varianzaProgresion <- var(progresion)
+  print('Término n-ésimo de la progresión.')
+  print(progresion[i+2])
+  print('Media de la progresión:')
+  print(mediaProgresion)  
+  print('Variaza de la progresión:')
+  print(varianzaProgresion)
+}
+```
+
+En la línea 1 ya definimos la progresión a la que le añadimos los dos primero
+elementos que indicamos. A partir de aquí como sólo tenemos que obtener la
+progresión sin esos dos números, los restamos al valor n. En la línea 3 creamos
+un bucle que creará una variable que asigna la probabilidad para cada próximo
+valor de ser sumados o multiplicados los valores precedentes. Al haber sólo dos
+opciones posibles establecemos un valor booleano con probabilidad 0.75 y 0.25.
+Usamos nuevamente la función sample pero sólo para que elija, en virtud de los
+porcentajes que especifiquemos, si la probabilidad de que se sumen es cierta o
+no. La línea 6 resuelve esta condición sumando el nuevo número a al progresión
+o multiplicándolo tal y como pedía el enunciado. Finalmente creamos dos
+variables que recojan la media y la varianza de la progresión de forma sencilla
+mediante las funciones mean y var y sean impresas mediante la función print.
+
+Esta nueva versión es mucho más legible, más fácil de entender, más corta y
+permite no sólo evitar muchos errores sino dar mucho más juego -podemos por
+ejemplo, jugar con los porcentajes del enunciado de una forma mucho más
+sencilla-. Pero somos estadísticos, y sabemos que aún habría una forma mejor de
+hacerlo, y aquí es donde entra en juego la función de distribución de Bernoulli.
+
+La función de distribución de Bernoulli es posiblemente la más sencilla de
+todas, evalúa la probabilidad de un suceso que sólo puede tomar dos valores
+posibles con cierta probabilidad. Suele utilizarse en situaciones dicotómicas,
+resultados binarios. O o 1, éxito o fracaso. Es, para que nos entendamos, como
+estar embarazada. O estás o no estás, no hay más opciones. Por ello la
+probabilidad de éxito se designa p y la de fracaso como q = (1-p), porque no
+hay espacio probabilístico para más resultados. ¿Y acaso no es esta la
+situación del ejemplo? R nos permite fácilmente llamar a esta distribución y
+poder mejorar un poco más el código:
+
+```{r}
+funcion3 = function(a1,a2,n){
+  library(LaplacesDemon)
+  progresion <- c(a1,a2)
+  n=n-2
+  for (i in 1:n){
+    probabilidadSuma <-rbern(1,0.75)
+    if (probabilidadSuma == TRUE){
+      progresion <- append(progresion, c(progresion[i]+progresion[i+1]))
+    } else {
+      progresion <- append(progresion, c(2*(progresion[i]+progresion[i+1])))
+    }
+  }
+  mediaProgresion <- mean(progresion)
+  varianzaProgresion <- var(progresion)
+  print('Término n-ésimo de la progresión.')
+  print(progresion[i+2])
+  print('Media de la progresión:')
+  print(mediaProgresion)  
+  print('Variaza de la progresión:')
+  print(varianzaProgresion)
+}
+```
+
+Vemos que ya en la línea 6 la función sample ha desaparecido. Hemos llamado a
+la librería LaplacesDemon que nos provee de la función rbern. Establecemos el
+número de observaciones a 1, ya que debemos ir de elemento en elemento y la
+probabilidad de éxito. Veamos la salida de los datos de las tres funciones,
+eligiendo que la progresión sólo tenga 3 elementos, a fin de ver mejor el
+resultado:
+
+```{r}
+funcion1(2,3,3)
+```
+
+```{r}
+funcion2(2,3,3)
+```
+
+```{r}
+funcion3(2,3,3)
+```
+
+La primera y la segunda función dan el mismo resultado -curiosamente el menos
+probable-, han multiplicado la suma de los elementos mientras que la tercera
+sólo los suma. El resultado es el mismo, pero hemos pasado de un código "para
+salir del paso" a otro que no sólo es más corto, legible y funcional, sino que
+aprovecha nuestros conocimientos estadísticos y por extensión, de las
+posibilidades de R. Imagine el lector la innecesaria complejidad añadida en
+caso de funciones de cientos de líneas, toda buena práctica siempre debe
+tenerse en cuenta.
