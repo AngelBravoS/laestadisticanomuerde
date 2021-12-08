@@ -3,7 +3,7 @@ email: angelbravos@posteo.net
 description: >-
     Página personal sobre estadística y alguna que otra cosa...
 baseurl: "/laestadisticanomuerde" 
-url: "http://laestadisticanomuerde.com"
+url: "localhost:4000"
 twitter_username: Angel_BravoS
 github_username:  AngelBravoS
 
