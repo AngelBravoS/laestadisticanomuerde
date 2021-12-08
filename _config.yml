@@ -1,10 +1,10 @@
 # Site settings
-title: El blog de Ángel Bravo Sáenz
+title: La estadística no muerde
 email: angelbravos@posteo.net
 description: >- # this means to ignore newlines until "baseurl:"
     Página personal sobre estadística y alguna que otra cosa...
 baseurl: "/laestadisticanomuerde" # the subpath of your site, e.g. /blog
-url: "localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://laestadisticanomuerde.com"
 twitter_username: Angel_BravoS
 github_username:  AngelBravoS
 
