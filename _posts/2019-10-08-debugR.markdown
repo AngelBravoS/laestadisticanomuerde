@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "La función debug en R"
+date:   2019-10-08 10:33:39 +0200
+categories: jekyll update
+---
+
+## La función debug en R
+
+Con más frecuencia de la deseada, al programar el resultado no suele ser el
+esperado. No hay errores de compilación ni R nos escupe ningún error. Sin
+embargo, la función no hace lo que queremos -o lo que creemos que debería- con
+el fin de poder encontrar esos errores en el código, existe en R la función
+debug() que nos permite ir viendo paso a paso cómo el código se comporta. Para
+mostrar cómo funciona usaremos Rstudio, aunque se puede usar sin problema desde
+Rcommander o la consola de R. Trataremos de que eso no suponga un problema.
+Utilizaremos un código sencillo:
+
+```{r}
+funcion = function(orden,valorA,valorB){
+  matriz=array(0,c(orden,orden))
+  for (i in 1:orden) {
+    matriz[,i]=runif(orden,valorA,valorB)
+  }
+  matriz
+}
+```
+
+```{r}
+funcion(3,0,1)
+
+##           [,1]       [,2]      [,3]
+## [1,] 0.3742609 0.03756709 0.5450607
+## [2,] 0.6979451 0.03996992 0.3196232
+## [3,] 0.2338034 0.06822659 0.2336514
+```
+
+Vemos que la función lo único que hace es, construir una matriz de resultados
+aleatorios de una uniforme, por ello le pasamos los tres valores a la función
+-orden de la matriz y los valores de a y b de la uniforme-. Vamos a ver qué
+hace el código, haremos lo siguiente:
+
+1-Creamos la función, bien escribiéndola en la terminal o seleccionando la
+función completa y pinchando en ”run”, al hacerlo la función aparecerá dentro
+de ”Global Enviroment”.
+2-Escribimos en la terminal ”debug()” con el nombre de la función en el
+paréntesis, es decir, ”debug(funcion)”
+3-Llamamos a la función como haríamos normalmente con los parámetros. Por
+ejemplo, ”funcion(3,0,1)” para crear una matrix 3x3 de valores de una
+uniforme(0,1) Al hacerlo, Rstudio entrará en modo debug, y deberíamos ver
+ésto:
+
+![modo debug](/laestadisticanomuerde/assets/images/1.png)
+
+En el panel lateral derecho se irán incluyendo y actualizado todos los valores
+y objetos que vayamos creando. Escribiendo ”n” tras ”Browse[2]&gt;” en la
+terminal o cliclando en ”Next”, R irá ejecutando paso a paso cada instrucción,
+la cual se autocoloreará para identificarla. Rstudio hasta indica con una
+flecha verde, la línea actual de ejecución
+
+![linea eje](/laestadisticanomuerde/assets/images/2.png)
+
+En la imagen vemos que ya se han asignado valores y se ha ejecutado la primera
+instrucción, que crea una matriz vacia llamada matriz -en un alarde de
+originalidad- del tamaño previamente especificado. Cualquier valor o dato puede
+ser consultado cuando se quiera sin problema sólo con nombrado en la terminal.
+Podemos comprobar que llamando al objeto matriz, efectivamente, hemos creado
+una
+matriz vacía.
+
+Ahora entramos en el bucle, se crea la variable i que toma el valor 1 al avanzar
+en él una vez, esto hace cumplir la sentencia vemos que una columna ya está
+completa, se ejecutará la instrucción señalada dos veces más, rellenando la
+matriz, hasta que i ya tome el valor 3 y se mostrará la matriz completa.
+
+![matriz completa](/laestadisticanomuerde/images/assets/3.png)
+
+![matriz completa2](/laestadisticanomuerde/images/assets/4.png)
+
+![matriz completa3](/laestadisticanomuerde/images/assets/5.png)
+
+Y...ya tenemos nuestra matriz. R saldrá automáticamente de la función debug en
+cuanto termine. Usar la función debug con el código que vayamos publicando en
+esta página puede daros una idea de su gran utilidad.
