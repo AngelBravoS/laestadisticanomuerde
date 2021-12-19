@@ -5,8 +5,6 @@ date:   2019-09-08 10:33:39 +0200
 categories: jekyll update
 ---
 
-## La importancia de un código claro
-
 Pese a que ésta es una cuestión que atañe no sólo a los estadísticos sino a
 informáticos y prácticamente cualquier rama tecnológica que implique la
 programación pura y dura, la claridad y la sencillez en el código nos ayudará

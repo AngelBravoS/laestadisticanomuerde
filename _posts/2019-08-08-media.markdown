@@ -5,8 +5,6 @@ date:   2019-08-08 10:33:39 +0200
 categories: jekyll update
 ---
 
-## Más allá de la media aritmética
-
 La media aritmética es una herramienta fundamental, básica en la estadística y
 por extensión, en la vida diaria. Tanto es así que hasta la gente más profana
 en la materia, la conoce y la utiliza llamándola por abuso del lenguaje,
