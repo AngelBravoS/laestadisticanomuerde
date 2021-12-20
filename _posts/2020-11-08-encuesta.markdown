@@ -1,0 +1,123 @@
+---
+layout: post
+title:  "¿Cuánta gente necesitamos para que una encuesta sea válida?"
+date:   2020-11-08 10:33:39 +0200
+categories: jekyll update
+---
+
+Al observar encuestas en medios de comunicación, es frecuente que mucha gente
+cuestione su validez en base al número de encuestados. Que siempre crean ser
+insuficientes es un error comprensible y usual pues, ¿cómo van a ser
+suficientes un par de miles de personas, si lo que queremos es obtener la
+opinión de millones de de personas de una forma válida?. El por qué suele ser
+un error pensar así se debe a que el tamaño de la población no es proporcional
+al tamaño de la muestra. Sin embargo, llevémoslo a un ejemplo muy básico para
+entender mejor el sentido de esta afirmación.
+
+Imaginemos que estamos solos en casa y queremos prepararnos una sopa. Usaríamos
+un cazo pequeño, y por medio de una cuchara, se remueve bien y se prueba su
+sabor. Con una cucharada es suficiente para saber si le falta sal, o cualquier
+otra cosa, pues una cucharada bien removida permite hacerse una idea muy
+concreta del resultado. Bien, imaginemos ahora que al día siguiente invitásemos
+a diez amigos a casa a cenar y volvemos a preparar sopa. Esta vez es una olla
+mucho más grande con diez veces más ingredientes, más cantidad ¿Sería necesario
+probarla diez veces o usar una cuchara diez veces más grande? Lo idóneo sería
+usar un cucharón, una cuchara sólo un poco más grande para remover bien, pero
+¿Y si son veinte personas? es absurdo pensar que deban tomarse 20 cucharadas
+-que es casi un plato entero- sólo para saber a qué sabe. Porque llegado a un
+punto, lo que importa es la calidad de la muestra, no su cantidad, ¿Y cuál debe
+ser esa cantidad?.
+
+La selección del tamaño de la muestra no es por tanto arbitraria, ni es
+''cocinada'' ni antes o después del muestreo/encuesta, sino que obedece a la
+necesidad de dar un resultado válido con el menor tamaño de muestra posible. No
+podríamos por ejemplo, estrellar todos los coches que fabricamos para comprobar
+su seguridad, evaluamos los menos posibles para obtener un dato fiable al menor
+coste. Tampoco tendría sentido contar millones de bacterias de limitada
+esperanza de vida, pues muchas morirían durante el recuento y habría que volver
+a empezar indefinidamente. Con las encuestas ocurre lo mismo, así que
+utilizamos para ello un margen de error que estemos dispuestos a asumir y lo
+que denominamos ''Intervalo de Confianza'' o IC.
+
+Siempre que se trabaja con muestras estadísticas, debemos asumir que nos
+movemos dentro de probabilidades, esto implica inherentemente un riesgo, un
+error. Cuando en lenguaje coloquial decimos que es probable que algo ocurra, se
+trata de algo que intuimos, pero no tenemos certeza absoluta. En el muestreo
+ocurre lo mismo, siempre hablaremos en términos probabilísiticos por lo que
+asumimos que la muestra tendrá un error admisible. Esto significa que
+establecido un estadístico -como podría ser la altura media de nuestros amigos
+sentados a la mesa- estableceremos un margen por exceso y por defecto sobre el
+que sabemos que oscilará ese estadístico.
+
+El margen de error nos sirve literalmente para eso, para tener un margen para
+equivocarnos. Imagine a esos diez amigos sentados a la mesa, y selecciona una
+muestra de cuatro de ellos para calcular su altura media. Dependiendo qué
+cuatro amigos escoja, la media podría estar más o menos cerca de la altura
+media real de todo el grupo. De modo que asignamos al mismo tiempo, una
+probabilidad de haber llegado a la conclusión correcta. Sabremos que con una
+probabilidad determinada, esa es la media, con un margen de error.
+
+Así, si establecemos que la altura media de nuestros diez amigos son 175cm con
+un margen de error de 3cm y un intervalo de confianza del 95%, lo que
+querremos decir es que garantizamos que con una probabilidad del 95% la
+altura será 175cm, 3cm arriba o abajo. En virtud de qué probabilidad queramos
+dar y con qué margen de error, el número de objetos, animales o cosas que deben
+ser muestreadas variará, pero aún debemos tener en cuenta un último punto.
+
+Siempre que se hace un muestreo, se hace teniendo en cuenta una característica
+de estudio. De modo que debemos tener en cuenta la proporción de individuos que
+poseen en la población la característica en cuestión. Si es hombre/mujer,
+éxito/fracaso, sí/no. En caso de desconocerse, se suele aplicar que la
+proporción es neutra.
+
+Todo ello se conjuga de la siguiente forma en esta ecuación:
+
+$$
+\begin{equation*}
+	n= \frac{Z_{\alpha/2}^{2}Npq}{e^{2}(N-1)+Z_{\alpha/2}^{2}pq}
+\end{equation*}
+$$
+
+$$n$$ es el tamaño de la muestra,
+$$Z_{\alpha/2}$$ es el valor alfa,
+$$N$$ es el total poblacional,
+$$e$$ es el error indicado,
+$$p$$ es la proporción el valor, de ahí obtenemos también $$q=(1-p)$$.
+
+El valor $$Z_{\alpha/2}$$ es una constante que varía dependiendo del intervalo
+de confianza elegido. Los valores de obtienen de una tabla de distribución
+normal tipificada $$N(0,1)$$ (Es decir, de media $$\mu=0$$ y varianza
+$$\sigma=1$$). Es necesario calcular $$\alpha/2$$, pues la simetría de la
+normal hace que el valor deba ser repartido a ambos extremos.
+
+| Valor de $$Z_{\alpha/2}$$ | 1.28 | 1.65 | 1.69 | 1.75 | 1.81 | 1.88 | 1.96 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Nivel de confianza | 80% | 90% | 91% | 92% | 93% | 94% | 95% |
+
+De modo que si quisiéramos evaluar una muestra de una población de por ejemplo,
+20.000 bacterias de una placa de Petri, con margen de error estándar -3%-
+con un intervalo de confianza del 95%:
+
+$$
+\begin{equation*}
+	n= \frac{1.96^{2} \cdot 20.000 \cdot
+p \cdot q}{0.03^{2} \cdot (20.000-1)+Z_{0.025}^{2} \cdot p \cdot q}=1.014
+\end{equation*}
+$$
+
+Sólo necesitamos una muestra de 1.014 bacterias para evaluar un estadístico con
+un margen de error del 3% de una forma válida en un 95%. Con esta
+fórmula, podemos comprobar que en caso de que la población fuera mucho mayor,
+por ejemplo de 20 millones:
+
+$$
+\begin{equation*}
+	n= \frac{1.96^{2} \cdot
+20.000.000 \cdot p \cdot q}{0.03^{2} \cdot (20.000.000-1)+Z_{0.025}^{2} \cdot
+p \cdot q}=1.068
+\end{equation*}
+$$
+
+Apenas deberíamos seleccionar 54 más, aún cuando la población total ha pasado
+de 20.000 a 20.000.000. Porque como dijimos al principio, el tamaño de la
+muestra no crece proporcionalmente al tamaño de la población.
